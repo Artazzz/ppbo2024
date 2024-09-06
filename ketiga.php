@@ -1,4 +1,5 @@
 <?php
+
 class Lingkaran
 {
     const PHI = 3.14;
@@ -6,18 +7,17 @@ class Lingkaran
 
     public function __construct($jari_jari)
     {
-        $this->jari_jari=$jari_jari;
-    }
-    public function luas() : float {
-        return self::PHI*$this->jari_jari*$this->jari_jari;
+        $this->jari_jari = $jari_jari;
     }
 
+    public function luas() : float {
+        return self::PHI * $this->jari_jari ** 2;
+    }
 
     public function keliling() : float {
-        return 2*self::PHI*$this->jari_jari;
+        return 2 * self::PHI * $this->jari_jari;
     }
 }
-
 
 class Bola
 {
@@ -26,61 +26,73 @@ class Bola
 
     public function __construct($jari_jari)
     {
-        $this->jari_jari=$jari_jari;
+        $this->jari_jari = $jari_jari;
     }
+
     public function volume() : float {
-        return (4/3)*self::PHI*pow($this->jari_jari,3);
+        return (4 / 3) * self::PHI * $this->jari_jari ** 3;
+    }
+
+    public function luas_permukaan() : float {
+        return 4 * self::PHI * $this->jari_jari ** 2;
     }
 }
-
 
 class Tabung
 {
     const PHI = 3.14;
-    public $jari_jari;
+    public $jari_jari, $tinggi;
 
-    public function __construct($jari_jari)
+    public function __construct($jari_jari, $tinggi)
     {
-        $this->jari_jari=$jari_jari;
+        $this->jari_jari = $jari_jari;
+        $this->tinggi = $tinggi;
     }
-    public function volume($tinggi) : float {
-        return self::PHI*pow($this->jari_jari,2)*$tinggi;
+
+    public function volume() : float {
+        return self::PHI * $this->jari_jari ** 2 * $this->tinggi;
+    }
+
+    public function luas_permukaan() : float {
+        return 2 * self::PHI * $this->jari_jari * ($this->jari_jari + $this->tinggi);
     }
 }
-
 
 class Kerucut
 {
     const PHI = 3.14;
-    public $jari_jari;
+    public $jari_jari, $tinggi;
 
-    public function __construct($jari_jari)
+    public function __construct($jari_jari, $tinggi)
     {
-        $this->jari_jari=$jari_jari;
+        $this->jari_jari = $jari_jari;
+        $this->tinggi = $tinggi;
     }
 
-    public function volume($tinggi) : float {
-        return (1/3)*self::PHI*pow($this->jari_jari,2)*$tinggi;
+    public function volume() : float {
+        return (1 / 3) * self::PHI * $this->jari_jari ** 2 * $this->tinggi;
+    }
+
+    public function luas_permukaan() : float {
+        $sisi_miring = sqrt($this->jari_jari ** 2 + $this->tinggi ** 2);
+        return self::PHI * $this->jari_jari * ($sisi_miring + $this->jari_jari);
     }
 }
 
-$nasi_tumpeng = new Kerucut(4);
-$volume_nastum=$nasi_tumpeng->volume(10);
+$lingkaran = new Lingkaran(7);
+echo "Luas Lingkaran: " . $lingkaran->luas() . "\n";
+echo "Keliling Lingkaran: " . $lingkaran->keliling() . "\n";
 
-echo "Volume Nasi tumpeng adalah {$volume_nastum}\n";
+$bola = new Bola(7);
+echo "Volume Bola: " . $bola->volume() . "\n";
+echo "Luas Permukaan Bola: " . $bola->luas_permukaan() . "\n";
 
-$jam_dinding=new Lingkaran(14);
-$luasjam=$jam_dinding->luas();
-$kelilingjam=$jam_dinding->keliling();
+$tabung = new Tabung(7, 10);
+echo "Volume Tabung: " . $tabung->volume() . "\n";
+echo "Luas Permukaan Tabung: " . $tabung->luas_permukaan() . "\n";
 
-echo "Luas jam dinding adalah {$luasjam} dan kelilingnya {$kelilingjam}\n";
+$kerucut = new Kerucut(7, 10);
+echo "Volume Kerucut: " . $kerucut->volume() . "\n";
+echo "Luas Permukaan Kerucut: " . $kerucut->luas_permukaan() . "\n";
 
-$bolakasti=new Bola(10);
-$volumekasti=$bolakasti->volume();
-
-echo "volume bola kasti adalah {$volumekasti}\n";
-
-$gelas=new Tabung(3,5);
-$volumegelas=$gelas->volume(10);
-
-echo "Volume gelas adalah {$volumegelas}\n";
+?>
