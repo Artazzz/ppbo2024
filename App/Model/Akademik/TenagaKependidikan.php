@@ -1,5 +1,5 @@
 <?php
-namespace App\Admin;
+namespace App\Model\Akademik;
 
 require_once 'Pegawai.php';
 
