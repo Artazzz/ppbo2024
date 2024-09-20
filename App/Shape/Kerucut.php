@@ -8,3 +8,4 @@ class Kerucut
         return (1/3)*self::PHI*pow($jari_jari,2)*$tinggi;
     }
 }
+

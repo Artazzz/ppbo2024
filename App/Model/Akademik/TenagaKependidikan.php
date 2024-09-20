@@ -14,3 +14,4 @@ class TenagaKependidikan extends Pegawai {
     public function cuti() {
     }
 }
+
