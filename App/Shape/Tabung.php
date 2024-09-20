@@ -1,5 +1,5 @@
 <?php
-namespace App\Model\Shape;
+namespace App\Shape;
 
 class Tabung
 {
