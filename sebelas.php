@@ -12,4 +12,4 @@ $dian = new Dosen(
     "0013118405"
 );
 
-echo $dian->nidn;
+echo $dian->getNoHp;
